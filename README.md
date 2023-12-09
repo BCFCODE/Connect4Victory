@@ -83,7 +83,6 @@ BCFCODEteam is calling. Let's code the extraordinary! 🌐✨
 ## Front-End Developers
 
 - [Morteza Bakhshandeh](https://www.linkedin.com/in/morteza-bakhshandeh-813598260/)
-- [Majid Babak](https://www.linkedin.com/in/majid-babak-aab039156/)
 
 ---
 
