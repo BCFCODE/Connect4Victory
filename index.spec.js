@@ -53,7 +53,7 @@ describe("Training on Connect Four | Codewars", () => {
     const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
-  it("should be >>> Red (in cross)", () => {
+  it("should be >>> Red", () => {
     const [piecesPositionList, expectedResult] = [
       [
         "B_Red",
@@ -80,7 +80,7 @@ describe("Training on Connect Four | Codewars", () => {
     const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
-  it("should be >>> Red (in row)", () => {
+  it("should be >>> Red", () => {
     const [piecesPositionList, expectedResult] = [
       [ 'B_Red',
   'B_Yellow',
