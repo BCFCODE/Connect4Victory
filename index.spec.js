@@ -1,4 +1,5 @@
 
+
 describe("Training on Connect Four | Codewars", () => {
   it("should be >>> Red", () => {
     const [piecesPositionList, expectedResult] = [

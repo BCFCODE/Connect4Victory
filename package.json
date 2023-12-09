@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "This repository hosts an exhilarating implementation of the classic Connect Four game. Engage in a battle of wits with friends or challenge the unbeatable AI, testing your tactical prowess in the quest for victory.",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "vitest": "^1.0.2"
+  },
   "scripts": {
     "test": "vitest"
   },
