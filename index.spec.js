@@ -1,4 +1,5 @@
-
+import { describe, expect, it } from "vitest";
+import { whoIsWinner } from ".";
 
 describe("Training on Connect Four | Codewars", () => {
   it("should be >>> Red", () => {
@@ -49,7 +50,7 @@ describe("Training on Connect Four | Codewars", () => {
       ],
       "Red",
     ];
-    const result = functions.whoIsWinner(piecesPositionList);
+    const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
   it("should be >>> Red (in cross)", () => {
@@ -76,7 +77,7 @@ describe("Training on Connect Four | Codewars", () => {
       ],
       "Red",
     ];
-    const result = functions.whoIsWinner(piecesPositionList);
+    const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
   it("should be >>> Red (in row)", () => {
@@ -110,7 +111,7 @@ describe("Training on Connect Four | Codewars", () => {
   'A_Red' ],
       "Red",
     ];
-    const result = functions.whoIsWinner(piecesPositionList);
+    const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
 
@@ -148,7 +149,7 @@ describe("Training on Connect Four | Codewars", () => {
       ],
       "Yellow",
     ];
-    const result = functions.whoIsWinner(piecesPositionList);
+    const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
 
@@ -173,7 +174,7 @@ describe("Training on Connect Four | Codewars", () => {
       ],
       "Red",
     ];
-    const result = functions.whoIsWinner(piecesPositionList);
+    const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
 
@@ -191,7 +192,7 @@ describe("Training on Connect Four | Codewars", () => {
       ],
       "Yellow",
     ];
-    const result = functions.whoIsWinner(piecesPositionList);
+    const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
 
@@ -229,7 +230,7 @@ describe("Training on Connect Four | Codewars", () => {
       ],
       "Red",
     ];
-    const result = functions.whoIsWinner(piecesPositionList);
+    const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
   it("should be >>> Red", () => {
@@ -259,7 +260,7 @@ describe("Training on Connect Four | Codewars", () => {
       ],
       "Red",
     ];
-    const result = functions.whoIsWinner(piecesPositionList);
+    const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
   it("should be >>> Red", () => {
@@ -296,7 +297,7 @@ describe("Training on Connect Four | Codewars", () => {
       ],
       "Red",
     ];
-    const result = functions.whoIsWinner(piecesPositionList);
+    const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
   it("should be >>> Red", () => {
@@ -331,7 +332,7 @@ describe("Training on Connect Four | Codewars", () => {
       ],
       "Red",
     ];
-    const result = functions.whoIsWinner(piecesPositionList);
+    const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
   it("should be >>> Red", () => {
@@ -364,7 +365,7 @@ describe("Training on Connect Four | Codewars", () => {
       ],
       "Red",
     ];
-    const result = functions.whoIsWinner(piecesPositionList);
+    const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
   it("should be >>> Draw", () => {
@@ -372,7 +373,7 @@ describe("Training on Connect Four | Codewars", () => {
       ["A_Red", "B_Yellow", "A_Red", "E_Yellow", "F_Red", "G_Yellow"],
       "Draw",
     ];
-    const result = functions.whoIsWinner(piecesPositionList);
+    const result = whoIsWinner(piecesPositionList);
     expect(result).toBe(expectedResult);
   });
 });
