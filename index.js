@@ -26,22 +26,18 @@ class FindWinner {
     const [, , color] = this._colData;
     let [, , X_rightToLeft, rightTraverseUp] = this._startSpots;
     while (X_rightToLeft >= 0 && rightTraverseUp <= 5) {
-      console.log(X_rightToLeft, rightTraverseUp) 
       rightToLeftDiagonal += this.board[X_rightToLeft][rightTraverseUp]
       X_rightToLeft--
       rightTraverseUp++
     }
-    console.log(rightToLeftDiagonal)
     if (/0{4}|1{4}/.test(rightToLeftDiagonal)) return color;
   }
 
   debugging() {
     const [leftXstartSpot, leftYstartSpot, rightXstartSpot, rightYstartSpot] =
       this._startSpots;
-      const [X_index, Y_index] = this._spotFinderData;
-      const [_, col, color] = this._colData;
-      this.checkDiagonalLeftToRight();
-      this.checkDiagonalRightToLeft();
+    const [X_index, Y_index] = this._spotFinderData;
+    const [_, col, color] = this._colData;
     console.log(
       col,
       "<col",
@@ -73,28 +69,29 @@ class FindWinner {
     console.log("_".repeat(28));
   }
 
+  traverse() {
+    this.checkDiagonalLeftToRight();
+    this.checkDiagonalRightToLeft();
+  }
+
   spotFinder() {
     const [X_index, Y_index] = this._spotFinderData;
-    const leftXstartSpot = X_index - Y_index < 0 ? 0 : X_index - Y_index,
-      leftYstartSpot = Y_index - X_index < 0 ? 0 : Y_index - X_index,
-      rightXstartSpot = X_index + Y_index > 6 ? 6 : X_index + Y_index,
-      rightYstartSpot =
-        Y_index - (6 - X_index) < 0 ? 0 : Y_index - (6 - X_index);
     this._startSpots = [
-      leftXstartSpot,
-      leftYstartSpot,
-      rightXstartSpot,
-      rightYstartSpot,
+      X_index - Y_index < 0 ? 0 : X_index - Y_index,
+      Y_index - X_index < 0 ? 0 : Y_index - X_index,
+      X_index + Y_index > 6 ? 6 : X_index + Y_index,
+      Y_index - (6 - X_index) < 0 ? 0 : Y_index - (6 - X_index)
     ];
   }
 
   diagonalCheck() {
-    let [X_index, col, color] = this._colData;
+    let [X_index] = this._colData;
     const currentCol = this.board[X_index];
     const Y_index = currentCol.length - 1;
     this._spotFinderData = [X_index, Y_index];
     this.spotFinder();
-    this.debugging();
+    this.traverse();
+    this.debugging()
   }
 
   crossCheck() {
@@ -108,10 +105,6 @@ class FindWinner {
     if (/0{4}|1{4}/.test(x) || /0{4}|1{4}/.test(y)) return color;
   }
 
-  get inCrossLines() {
-    return this._result;
-  }
-
   set moves(piecesPositionList) {
     const keyCol = { A: 0, B: 1, C: 2, D: 3, E: 4, F: 5, G: 6 };
     for (let i = 0; i < piecesPositionList.length; i++) {
@@ -120,18 +113,21 @@ class FindWinner {
       this.board[X_index] += this.colorCodes[color];
       this._colData = [X_index, col, color];
       this._traverseLeftToRightData = [];
-      this._result = this.crossCheck() || this.diagonalCheck() || this.checkDiagonalLeftToRight() || this.checkDiagonalRightToLeft() ;
-      if(this._result === undefined) this._result === 'Draw'
+      this._result = this.crossCheck() || this.diagonalCheck() || this.checkDiagonalLeftToRight() || this.checkDiagonalRightToLeft();
+      if (this._result === undefined) this._result === 'Draw'
       if (this._result) break;
     }
-    console.log(this.board, piecesPositionList);
+  }
+
+  get result() {
+    return this._result;
   }
 }
 
 const whoIsWinner = (piecesPositionList) => {
   const winner = new FindWinner();
   winner.moves = piecesPositionList;
-  return winner.inCrossLines ?? 'Draw';
+  return winner.result ?? 'Draw';
 };
 
 export { whoIsWinner };
