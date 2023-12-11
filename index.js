@@ -12,7 +12,7 @@ class WinnerFinder {
   checkDiagonalLeftToRight() {
     let leftToRightDiagonal = "";
     let [X_leftToRight, leftTraverseUp] = this._startSpots;
-    const [, col, color] = this._colData;
+    const { color } = this._colData;
     while (X_leftToRight < 7 && leftTraverseUp < 5) {
       leftToRightDiagonal += this.board[X_leftToRight][leftTraverseUp]
       X_leftToRight++;
@@ -23,7 +23,7 @@ class WinnerFinder {
 
   checkDiagonalRightToLeft() {
     let rightToLeftDiagonal = "";
-    const [, , color] = this._colData;
+    const { color } = this._colData;
     let [, , X_rightToLeft, rightTraverseUp] = this._startSpots;
     while (X_rightToLeft >= 0 && rightTraverseUp <= 5) {
       rightToLeftDiagonal += this.board[X_rightToLeft][rightTraverseUp]
@@ -39,7 +39,7 @@ class WinnerFinder {
   }
 
   spotFinder() {
-    let [X_index] = this._colData;
+    let { X_index } = this._colData;
     const currentCol = this.board[X_index];
     const Y_index = currentCol.length - 1;
     this._spotFinderData = [X_index, Y_index];
@@ -50,15 +50,15 @@ class WinnerFinder {
       Y_index - (6 - X_index) < 0 ? 0 : Y_index - (6 - X_index)
     ];
   }
-  
+
   diagonalCheck() {
     this.spotFinder();
     this.traverse();
     this.logs()
   }
-  
+
   crossCheck() {
-    let [X_index, col, color] = this._colData;
+    let { X_index, color } = this._colData;
     const currentCol = this.board[X_index];
     const Y_index = currentCol.length - 1;
     let [x, y] = ["", currentCol];
@@ -73,7 +73,7 @@ class WinnerFinder {
     const [leftXstartSpot, leftYstartSpot, rightXstartSpot, rightYstartSpot] =
       this._startSpots;
     const [X_index, Y_index] = this._spotFinderData;
-    const [_, col, color] = this._colData;
+    const { col, color } = this._colData;
     console.log(
       col,
       "<col",
@@ -105,14 +105,16 @@ class WinnerFinder {
     );
     console.log("_".repeat(28));
   }
- 
+
   set moves(piecesPositionList) {
     const keyCol = { A: 0, B: 1, C: 2, D: 3, E: 4, F: 5, G: 6 };
     for (let i = 0; i < piecesPositionList.length; i++) {
       const [col, color] = piecesPositionList[i].split`_`;
-      const X_index = keyCol[col];
+      this._colData = {
+        X_index: keyCol[col], col, color
+      }
+      const { X_index } = this._colData
       this.board[X_index] += this.colorCodes[color];
-      this._colData = [X_index, col, color];
       this._result = this.crossCheck() || this.diagonalCheck() || this.checkDiagonalLeftToRight() || this.checkDiagonalRightToLeft();
       if (this._result) break;
     }
